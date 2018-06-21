@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "www.mp5a5.com.kotlinmvp"
+        minSdkVersion 23
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //测试配置
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //Kotlin配置
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+
+    //Android配置
+    implementation 'com.android.support.constraint:constraint-layout:'+ rootProject.constraintLayoutVersion
+    implementation 'com.android.support:appcompat-v7:' + rootProject.supportLibVersion
+    implementation 'com.android.support:design:' + rootProject.supportLibVersion
+    implementation 'com.android.support:cardview-v7:' + rootProject.supportLibVersion
+    implementation 'com.android.support:recyclerview-v7:' + rootProject.supportLibVersion
+
+    //其他配置
+    //RxJava
+    implementation 'io.reactivex.rxjava2:rxandroid:'+ rootProject.rxandroidVersion
+    implementation 'io.reactivex.rxjava2:rxjava:'+ rootProject.rxjavaVersion
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:'+rootProject.retrofitVersion
+    implementation 'com.squareup.retrofit2:converter-gson:'+rootProject.retrofitLibVersion
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:'+rootProject.retrofitLibVersion
+    //OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:'+rootProject.okhttpVersion
+    implementation 'com.squareup.okhttp3:logging-interceptor:'+rootProject.okhttpInterceptorVersion
+    //RxLifecycle2
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:'+rootProject.rxlifecycleVersion
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:'+rootProject.rxlifecycleVersion
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:'+rootProject.rxlifecycleVersion
+    //baseAdapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:'+rootProject.baseAdapterVersion
+    //glide
+    implementation 'com.github.bumptech.glide:glide:'+rootProject.glideLibVersion
+    annotationProcessor 'com.github.bumptech.glide:compiler:'+rootProject.glideLibVersion
+    //Gson
+    implementation 'com.google.code.gson:gson:'+rootProject.gsonVersion
+}
