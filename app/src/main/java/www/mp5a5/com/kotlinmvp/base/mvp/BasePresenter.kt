@@ -7,7 +7,7 @@ import java.lang.ref.WeakReference
  * @author ：king9999 on 2018/6/21 11：02
  * @email：wwb199055@enn.cn
  */
-abstract class BasePresenter< V : BaseView> {
+abstract class BasePresenter<V : BaseView> {
     
     protected lateinit var v: V
     
