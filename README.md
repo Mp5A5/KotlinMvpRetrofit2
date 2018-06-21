@@ -1,0 +1,2 @@
+# KotlinMvpRetrofit2
+这是一个用Kotlin封装的Rxjava+Retrofit+Mvp的框架，直接可以下载下来在项目中直接使用
