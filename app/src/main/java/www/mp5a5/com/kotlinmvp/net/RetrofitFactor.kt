@@ -11,6 +11,7 @@ import www.mp5a5.com.kotlinmvp.net.interceptor.HttpCacheInterceptor
 import www.mp5a5.com.kotlinmvp.net.interceptor.HttpHeaderInterceptor
 import www.mp5a5.com.kotlinmvp.net.interceptor.LoggingInterceptor
 import www.mp5a5.com.kotlinmvp.util.AppContextUtils
+import www.mp5a5.com.kotlinmvp.util.LogUtils
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -21,17 +22,30 @@ import java.util.concurrent.TimeUnit
  */
 object RetrofitFactor {
     
+    private var retrofit: Retrofit? = null
+    private var cacheDir: File? = null
+    private var cache: Cache? = null
+    
     init {
         init()
     }
     
-    private var retrofit: Retrofit? = null
     
     private fun init() {
         
         // 指定缓存路径,缓存大小100Mb
-        val cacheFile = File(AppContextUtils.getContext().getCacheDir(), "HttpCache");
-        val cache = Cache(cacheFile, 1024 * 1024 * 100);
+        
+        if (cacheDir === null) {
+            cacheDir = File(AppContextUtils.getContext().cacheDir, "HttpCache")
+        }
+        try {
+            if (cache === null) {
+                @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+                cache = Cache(cacheDir, 1024 * 1024 * 100)
+            }
+        } catch (e: Exception) {
+            LogUtils.e("OKHttp-----", "You can't create http cache" + "--" + e.message.toString())
+        }
         
         val httpClient: OkHttpClient = OkHttpClient().newBuilder()
                 .readTimeout(ApiConfig.defaultTime.toLong(), TimeUnit.SECONDS)
