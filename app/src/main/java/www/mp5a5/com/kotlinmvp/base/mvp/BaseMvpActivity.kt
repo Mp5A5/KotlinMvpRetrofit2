@@ -8,7 +8,7 @@ import www.mp5a5.com.kotlinmvp.base.view.act.BaseActivity
  * @author ：king9999 on 2018/6/21 11：31
  * @email：wwb199055@enn.cn
  */
-abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView {
+abstract class BaseMvpActivity<P : BasePresenter<out BaseView>> : BaseActivity(), BaseView {
     
     
     protected lateinit var presenter: P
